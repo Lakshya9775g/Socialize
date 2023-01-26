@@ -1,4 +1,4 @@
-import "./leftBar.scss";
+import "./leftbar.scss";
 import Friends from "../../assets/1.png";
 import Groups from "../../assets/2.png";
 import Market from "../../assets/3.png";
@@ -15,9 +15,9 @@ import Fund from "../../assets/13.png";
 import { AuthContext } from "../../context/authContext";
 import { useContext } from "react";
 
-const LeftBar = () => {
+const Leftbar = () => {
 
-  const { currentUser } = useContext(AuthContext);
+  const {currentUser} = useContext(AuthContext);
 
   return (
     <div className="leftBar">
@@ -53,7 +53,7 @@ const LeftBar = () => {
         </div>
         <hr />
         <div className="menu">
-          <span>Your shortcuts</span>
+          <span>Your Shortcuts</span>
           <div className="item">
             <img src={Events} alt="" />
             <span>Events</span>
@@ -77,8 +77,8 @@ const LeftBar = () => {
         </div>
         <hr />
         <div className="menu">
-          <span>Others</span>
-          <div className="item">
+            <span>Others</span>
+            <div className="item">
             <img src={Fund} alt="" />
             <span>Fundraiser</span>
           </div>
@@ -90,10 +90,26 @@ const LeftBar = () => {
             <img src={Courses} alt="" />
             <span>Courses</span>
           </div>
+          <div className="item">
+            <img src={Courses} alt="" />
+            <span>Courses</span>
+          </div>
+          <div className="item">
+            <img src={Courses} alt="" />
+            <span>Courses</span>
+          </div>
+          <div className="item">
+            <img src={Courses} alt="" />
+            <span>Courses</span>
+          </div>
+          <div className="item">
+            <img src={Courses} alt="" />
+            <span>Courses</span>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default LeftBar;
+export default Leftbar;

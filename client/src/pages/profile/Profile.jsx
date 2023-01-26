@@ -1,4 +1,4 @@
-import "./profile.scss";
+import "./profile.scss"
 import FacebookTwoToneIcon from "@mui/icons-material/FacebookTwoTone";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -8,7 +8,8 @@ import PlaceIcon from "@mui/icons-material/Place";
 import LanguageIcon from "@mui/icons-material/Language";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Posts from "../../components/posts/Posts"
+
+import Posts from "../../components/posts/Posts";
 
 const Profile = () => {
   return (
@@ -47,20 +48,20 @@ const Profile = () => {
           <div className="center">
             <span>Jane Doe</span>
             <div className="info">
-              <div className="item">
-                <PlaceIcon />
-                <span>USA</span>
-              </div>
-              <div className="item">
-                <LanguageIcon />
-                <span>lama.dev</span>
-              </div>
+                <div className="item">
+                    <PlaceIcon/>
+                    <span>India</span>
+                </div>
+                <div className="item">
+                    <LanguageIcon/>
+                    <span>Lakshya</span>
+                </div>
             </div>
-            <button>follow</button>
+            <button>Follow</button>
           </div>
           <div className="right">
-            <EmailOutlinedIcon />
-            <MoreVertIcon />
+            <EmailOutlinedIcon/>
+            <MoreVertIcon/>
           </div>
         </div>
       <Posts/>
