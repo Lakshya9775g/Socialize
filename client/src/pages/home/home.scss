@@ -1,6 +1,7 @@
 @import "../../style.scss";
 
 .home{
+<<<<<<< HEAD
     @include themify($themes){
         background-color: themed("bgSoft");
         padding: 20px 70px;
@@ -13,3 +14,18 @@
         }
     }
 }
+=======
+  @include themify($themes) {
+    padding: 20px 70px;
+    background-color: themed("bgSoft");
+
+    @include mobile {
+      padding: 10px;
+    }
+
+    @include tablet{
+      padding: 20px;
+    }
+  }
+ }
+>>>>>>> ef40cc4537ab40fa5ed62a2216fb3f2c2746ebfb

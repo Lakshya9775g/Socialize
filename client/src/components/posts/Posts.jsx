@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import { Post } from "../post/Post";
 import "./posts.scss"
 
 const Posts = () => {
 
+=======
+import Post from "../post/Post";
+import "./posts.scss";
+
+const Posts = () => {
+  //TEMPORARY
+>>>>>>> ef40cc4537ab40fa5ed62a2216fb3f2c2746ebfb
   const posts = [
     {
       id: 1,
@@ -23,6 +31,7 @@ const Posts = () => {
     },
   ];
 
+<<<<<<< HEAD
 
   return (
     <div className="posts">
@@ -32,4 +41,13 @@ const Posts = () => {
     </div>
   )
 }
+=======
+  return <div className="posts">
+    {posts.map(post=>(
+      <Post post={post} key={post.id}/>
+    ))}
+  </div>;
+};
+
+>>>>>>> ef40cc4537ab40fa5ed62a2216fb3f2c2746ebfb
 export default Posts;

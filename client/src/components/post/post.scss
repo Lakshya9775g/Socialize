@@ -20,12 +20,23 @@
         .userInfo {
           display: flex;
           gap: 20px;
+<<<<<<< HEAD
           img {
             width: 40px;
             height: 40px;
             object-fit: cover;
             border-radius: 50%;
           }
+=======
+
+          img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+>>>>>>> ef40cc4537ab40fa5ed62a2216fb3f2c2746ebfb
           .details {
             display: flex;
             flex-direction: column;
@@ -40,6 +51,7 @@
           }
         }
       }
+<<<<<<< HEAD
       .content{
         margin: 20px 0px;
 
@@ -51,10 +63,26 @@
         }
       }
       .info{
+=======
+
+      .content {
+        margin: 20px 0px;
+
+        img {
+          width: 100%;
+          max-height: 500px;
+          object-fit: cover;
+          margin-top: 20px;
+        }
+      }
+
+      .info {
+>>>>>>> ef40cc4537ab40fa5ed62a2216fb3f2c2746ebfb
         display: flex;
         align-items: center;
         gap: 20px;
 
+<<<<<<< HEAD
 
         .item{
             display: flex;
@@ -64,6 +92,15 @@
             font-size: 14px;
         }
 
+=======
+        .item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+          font-size: 14px;
+        }
+>>>>>>> ef40cc4537ab40fa5ed62a2216fb3f2c2746ebfb
       }
     }
   }

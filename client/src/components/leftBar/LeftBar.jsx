@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import "./leftbar.scss";
+=======
+import "./leftBar.scss";
+>>>>>>> ef40cc4537ab40fa5ed62a2216fb3f2c2746ebfb
 import Friends from "../../assets/1.png";
 import Groups from "../../assets/2.png";
 import Market from "../../assets/3.png";
@@ -15,9 +19,15 @@ import Fund from "../../assets/13.png";
 import { AuthContext } from "../../context/authContext";
 import { useContext } from "react";
 
+<<<<<<< HEAD
 const Leftbar = () => {
 
   const {currentUser} = useContext(AuthContext);
+=======
+const LeftBar = () => {
+
+  const { currentUser } = useContext(AuthContext);
+>>>>>>> ef40cc4537ab40fa5ed62a2216fb3f2c2746ebfb
 
   return (
     <div className="leftBar">
@@ -53,7 +63,11 @@ const Leftbar = () => {
         </div>
         <hr />
         <div className="menu">
+<<<<<<< HEAD
           <span>Your Shortcuts</span>
+=======
+          <span>Your shortcuts</span>
+>>>>>>> ef40cc4537ab40fa5ed62a2216fb3f2c2746ebfb
           <div className="item">
             <img src={Events} alt="" />
             <span>Events</span>
@@ -77,8 +91,13 @@ const Leftbar = () => {
         </div>
         <hr />
         <div className="menu">
+<<<<<<< HEAD
             <span>Others</span>
             <div className="item">
+=======
+          <span>Others</span>
+          <div className="item">
+>>>>>>> ef40cc4537ab40fa5ed62a2216fb3f2c2746ebfb
             <img src={Fund} alt="" />
             <span>Fundraiser</span>
           </div>
@@ -90,6 +109,7 @@ const Leftbar = () => {
             <img src={Courses} alt="" />
             <span>Courses</span>
           </div>
+<<<<<<< HEAD
           <div className="item">
             <img src={Courses} alt="" />
             <span>Courses</span>
@@ -106,10 +126,16 @@ const Leftbar = () => {
             <img src={Courses} alt="" />
             <span>Courses</span>
           </div>
+=======
+>>>>>>> ef40cc4537ab40fa5ed62a2216fb3f2c2746ebfb
         </div>
       </div>
     </div>
   );
 };
 
+<<<<<<< HEAD
 export default Leftbar;
+=======
+export default LeftBar;
+>>>>>>> ef40cc4537ab40fa5ed62a2216fb3f2c2746ebfb
