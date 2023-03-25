@@ -1,72 +1,13 @@
-<<<<<<< HEAD
-import './login.scss';
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useContext } from 'react';
-import { AuthContext } from '../../context/authContext';
-
-const Login = ()=> {
-
-    const {login} = useContext(AuthContext);
-
-    const handleLogin = ()=>{
-        login();
-    }
-
-    return (
-        <div className="login">
-            <div className="card">
-                <div className="left">
-                    <h1>Hello mates</h1>
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.</p>
-                    <span>Don't You Have An Account?</span>
-                    <Link to= "/register">
-                        <button>Register</button>
-                    </Link>
-                </div>
-                <div className="right">
-                    <h1>Login</h1>
-                    <form >
-                        <input type="text" placeholder="username"/>
-                        <input type="password" placeholder="password"/>
-                        <button onClick={handleLogin}>Login</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export default Login;
-
-=======
-import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import "./login.scss";
 
 const Login = () => {
-  const [inputs, setInputs] = useState({
-    username: "",
-    password: ""
-  });
-  const [err, setErr] = useState(null);
-
-  const navigate = useNavigate()
-  const handleChange = (e) => {
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
   const { login } = useContext(AuthContext);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try{
-      await login(inputs);
-      navigate("/")
-    }catch(err){
-      setErr(err.response.data);
-    }
+  const handleLogin = () => {
+    login();
   };
 
   return (
@@ -87,9 +28,8 @@ const Login = () => {
         <div className="right">
           <h1>Login</h1>
           <form>
-            <input type="text" placeholder="Username" name = "username" onChange={handleChange} />
-            <input type="password" placeholder="Password" name = "password" onChange={handleChange}/>
-            {err && err}
+            <input type="text" placeholder="Username" />
+            <input type="password" placeholder="Password" />
             <button onClick={handleLogin}>Login</button>
           </form>
         </div>
@@ -99,4 +39,3 @@ const Login = () => {
 };
 
 export default Login;
->>>>>>> ef40cc4537ab40fa5ed62a2216fb3f2c2746ebfb
