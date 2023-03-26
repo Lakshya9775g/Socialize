@@ -2,8 +2,7 @@ import mongoose, { model } from "mongoose";
 
 const UserSchema = new mongoose.Schema({
   id: {
-    type: mongoose.Types.ObjectId,
-    default: mongoose.Types.ObjectId()
+    type: mongoose.Schema.Types.ObjectId,
   },
   name: {
     type: String,
@@ -16,15 +15,13 @@ const UserSchema = new mongoose.Schema({
   },
   profilePic: {
     type: String,
+    default: null
   },
   coverPic: {
     type: String,
+    default: null
   },
   password: {
-    type: String,
-    required: true
-  },
-  confirmPassword: {
     type: String,
     required: true
   },
@@ -35,9 +32,11 @@ const UserSchema = new mongoose.Schema({
   },
   city: {
     type: String,
+    default: null
   },
   website: {
-    type: String
+    type: String,
+    default: null
   }
 });
 

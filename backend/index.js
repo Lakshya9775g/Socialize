@@ -1,5 +1,5 @@
-import  Express  from "express";
-const app = Express();
+import  express  from "express";
+const app = express();
 import * as dotenv from 'dotenv' 
 dotenv.config()
 import mongoose from 'mongoose';
@@ -8,9 +8,15 @@ import authRoutes from "./routes/auth.js"
 import postRoutes from "./routes/posts.js"
 import commentRoutes from "./routes/comments.js"
 import likeRoutes from "./routes/likes.js"
+import cookieParser from "cookie-parser";
+import cors from 'cors'
 
 const DB = process.env.DB_LINK;
 const port = process.env.PORT || 8080;
+
+app.use(express.json());
+app.use(cors());
+app.use(cookieParser());
 
 app.use("/api/auth", authRoutes) 
 app.use("/api/users", userRoutes) // put forward slash before starting the name of route.
