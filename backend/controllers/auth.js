@@ -1,60 +1,85 @@
-import { db } from "../connect.js";
-import bcrypt from "bcryptjs";
-import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt';
+import User from '../models/users.js';
+import jwt from 'jsonwebtoken';
 
-export const register = (req, res) => {
-    //CHECK user if exist
-    const q = "SELECT * FROM users WHERE username = ?";
-    
-    
-    db.query(q, [req.body.username], (err, data) => {
-      if (err) return res.status(500).json(err);
-      if (data.length) return res.status(409).json("User already exists!");
-      // console.log("req reached")
-    //CREATE A NEW USER
-    //Hash the password
-    const salt = bcrypt.genSaltSync(10);
-    const hashedPassword = bcrypt.hashSync(req.body.password, salt);
+export const register = async (req, res) => {
+    //check if exists
+    const data = {
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+        name: req.body.name
+    }
 
-    const q =
-      "INSERT INTO users (`username`,`email`,`password`,`name`) VALUE (?)";
 
-    const values = [
-      req.body.username,
-      req.body.email,
-      hashedPassword,
-      req.body.name,
-    ];
+    if (!data.username) {
+        return res.status(409).json("Username is required");
+    }
+    if (!data.email) {
+        return res.status(409).json("Email is required");
+    }
+    if (!data.password) {
+        return res.status(409).json("Password is required");
+    }
+    try {
+        // Check if user already exists
+        const username = req.body.username;
+        const existingUser = await User.find({ username });
+        if (!existingUser) {
+            return res.status(409).json("Username already exists");
+        }
 
-    db.query(q, [values], (err, data) => {
-      if (err) return res.status(500).json(err);
-      return res.status(200).json("User has been created.");
-    });
-  });
-};
-export const login = (req, res) => {
-  const q = "SELECT * FROM users WHERE username = ?"
-  db.query(q, [req.body.username], (err, data) => { 
-    if (err) return res.status(500).json(err);
-    if (data.length == 0) return res.status(404).json("User not Found");
-    
-    const checkPassword = bcrypt.compareSync(req.body.password, data[0].password)
-    if(!checkPassword)
-      return res.status(400).json("wrong Password or Username.!")
-    
-    const token = jwt.sign({id:data[0].id},"secretkey");
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(data.password, saltRounds);
+        data.password = hashedPassword;
+        const value = await User.create(data);
 
-    const {password, ...others} = data[0];
-    res.cookie("accessToken", token, {
-      httpOnly: true,      
-    })
-    .status(200)
-    .json(others);
-  });
-};
-export const logout = (req, res) => {
-  res.clearCookie("accessToken", {
-    secure:true,
-    sameSite: "none"
-  }).status(200).json("user has been logged out");
-};
+        res.status(200).json({
+            messege: "Registered Successfully",
+            data: value
+        });
+    } catch (e) {
+        res.status(409).json({ messege: `Error: ${e}` });
+    }
+
+}
+export const login = async (req, res) => {
+    try {
+        const pass = req.body.password;
+        const username = req.body.username;
+
+        // Check if email exists in the database
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(400).json({ error: "Invalid credentials" });
+        }
+
+        // Check if the password matches the one in the database
+        const isPasswordMatch = await bcrypt.compare(pass, user.password);
+        if (!isPasswordMatch) {
+            return res.status(400).json({ error: "Invalid credentials" });
+        }
+
+        // Generate and sign a JWT token
+        const token = jwt.sign({ userId: user._id }, "my-secret-key");
+        // Return the token in the responsea
+
+        res.cookie("accessToken", token, {
+            httpOnly: true,
+        }).status(200).json("login Successfully"); //! Modification us Required.
+
+    } catch (e) {
+        res.status(409).json({ messege: `Error: ${e}` });
+    }
+
+}
+export const logout = async (req, res) => {
+    try {
+        res.clearCookie("accessToken", {
+            secure: true,
+            samSite: "none"
+        }).status(200).json("user has been logged out.");
+    } catch (error) {
+        res.status(401).send({ error: 'Please authenticate.' });
+    }
+}
