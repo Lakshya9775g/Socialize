@@ -38,7 +38,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: null
   }
-});
+},{
+  toJSON: {
+      transform: function (doc, ret) {
+          delete ret.password; // exclude password field from the response
+      }
+  }
+}
+);
 
 export default mongoose.model('User', UserSchema);
 

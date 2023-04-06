@@ -25,7 +25,8 @@ export const register = async (req, res) => {
         // Check if user already exists
         const username = req.body.username;
         const existingUser = await User.find({ username });
-        if (!existingUser) {
+        // console.log(existingUser);
+        if (existingUser.length) {
             return res.status(409).json("Username already exists");
         }
 
@@ -33,13 +34,13 @@ export const register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(data.password, saltRounds);
         data.password = hashedPassword;
         const value = await User.create(data);
-
+        console.log("registered");
         res.status(200).json({
             messege: "Registered Successfully",
             data: value
         });
     } catch (e) {
-        res.status(409).json({ messege: `Error: ${e}` });
+        res.status(500).json({ messege: `Error: ${e}` });
     }
 
 }
@@ -66,7 +67,7 @@ export const login = async (req, res) => {
 
         res.cookie("accessToken", token, {
             httpOnly: true,
-        }).status(200).json("login Successfully"); //! Modification us Required.
+        }).status(200).json(user); //! Modification us Required.
 
     } catch (e) {
         res.status(409).json({ messege: `Error: ${e}` });
